@@ -59,7 +59,19 @@ router.post('/', async (req, res, next) => {
 })
 
 router.delete('/:contactId', async (req, res, next) => {
-  res.json({ message: 'template message' })
+  try {
+    const { contactId } = req.params;
+    const result = await contactsService.removeContact(contactId);
+
+    if (!result) {
+      throw HttpError(404, `Contact with id:${contactId} not found!`);
+    }
+
+    res.json(result);
+
+  } catch (error) {
+    next(error);
+  }
 })
 
 router.put('/:contactId', async (req, res, next) => {
