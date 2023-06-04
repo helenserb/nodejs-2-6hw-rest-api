@@ -31,8 +31,10 @@ const addContact = async (data) => {
   contacts.push(newContact);
   await updateContacts(contacts);
 
+  console.log(newContact)
   return newContact;
 };
+
 
 const removeContact = async (id) => {
   const contactId = String(id);
