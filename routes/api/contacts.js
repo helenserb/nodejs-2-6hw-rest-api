@@ -8,8 +8,8 @@ const contactsService = require("../../models/contacts");
 const { HttpError } = require('../../helpers')
 
 const contactAddSchema = Joi.object({
-  name: Joi.string().required,
-  email: Joi.string().required,
+  name: Joi.string().required(),
+  email: Joi.string().required(),
   phone: Joi.string()
     .regex(/^[0-9]{10}$/)
     .messages({ "string.pattern.base": `Phone number must have 10 digits.` })
@@ -63,7 +63,24 @@ router.delete('/:contactId', async (req, res, next) => {
 })
 
 router.put('/:contactId', async (req, res, next) => {
-  res.json({ message: 'template message' })
+  try {
+        const { error } = contactAddSchema.validate(req.body);
+        if (error) {
+          throw HttpError(400, error.message);
+        }
+  
+    const { contactId } = req.params;
+    const result = await contactsService.updateContact(contactId, req.body);
+
+     if (!result) {
+       throw HttpError(404, `Contact with id:${contactId} not found!`);
+     }
+    
+    res.json(result);
+
+  } catch(error) {
+    next(error);
+  }
 })
 
-module.exports = router
+module.exports = router;
