@@ -11,6 +11,7 @@ const contactAddSchema = Joi.object({
     .pattern(phoneRegexp)
     .messages({"string.pattern.base": `Phone number must be in next format: (XXX) XXX-XXXX`})
     .required(),
+  favorite: Joi.boolean(),
 });
 
 module.exports = {

@@ -11,14 +11,14 @@ const {validateBodyReq} = require ('../../helpers')
 
 router.get("/", contactsController.getAllContacts);
 
-router.get("/:contactId", contactsController.getContactById);
+// router.get("/:contactId", contactsController.getContactById);
 
 router.post("/", validateBody(schemas.contactAddSchema), contactsController.addContact);
 
-router.delete("/:contactId", contactsController.deleteContactById);
+// router.delete("/:contactId", contactsController.deleteContactById);
 
-router.put(
-  "/:contactId", validateBodyReq, validateBody(schemas.contactAddSchema),contactsController.updateContactById
-);
+// router.put(
+//   "/:contactId", validateBodyReq, validateBody(schemas.contactAddSchema),contactsController.updateContactById
+// );
 
 module.exports = router;
