@@ -7,7 +7,7 @@ const contactAddSchema = Joi.object({
     .required(),
   email: Joi.string()
     .required(),
-  phone: Joi.string().pattern(/^[0-9]{10}$/).messages({'string.pattern.base': `Phone number must have 10 digits.`}).required(),
+  phone: Joi.string().required(),
   favorite: Joi.boolean(),
 });
 
