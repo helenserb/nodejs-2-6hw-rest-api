@@ -46,8 +46,16 @@ const signin = async (req, res) => {
     res.json({token})
 }
 
+const getCurrent = async (req, res) => {
+    const { name, email } = req.user;
+    res.json({
+        name,
+        email,
+    })
+}
 
 module.exports = {
     signup: ctrlWrapper(signup),
     signin: ctrlWrapper(signin),
+    getCurrent: ctrlWrapper(getCurrent),
 }
