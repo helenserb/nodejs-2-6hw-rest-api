@@ -1,5 +1,5 @@
 const { Schema, model } = require('mongoose');
-const {handleMongooseError}  = require("../middlewares")
+const {handleMongooseError}  = require("../helpers")
 
 const contactSchema = new Schema({
   name: {
@@ -16,6 +16,7 @@ const contactSchema = new Schema({
     type: Boolean,
     default: false,
   }, 
+  
 },
     {
         versionKey: false,
