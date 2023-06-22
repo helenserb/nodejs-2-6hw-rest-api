@@ -1,10 +1,15 @@
 const Joi = require("joi");
 
-const userRegisterSchema = Joi.object({
+const userAuthSchema = Joi.object({
     email: Joi.string().email().required(),
     password: Joi.string().required(),
 });
 
+const userSubscriptionSchema = Joi.object({
+  subscription: Joi.string().valid('starter', 'pro', 'business').required(),
+});
+
 module.exports = {
-  userRegisterSchema,
+  userAuthSchema,
+  userSubscriptionSchema,
 };
