@@ -1,7 +1,5 @@
 const Joi = require("joi");
 
-const phoneRegexp = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/;
-
 const contactAddSchema = Joi.object({
   name: Joi.string()
     .required(),
