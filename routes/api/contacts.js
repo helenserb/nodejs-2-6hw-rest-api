@@ -9,7 +9,7 @@ const schemas = require('../../schemas/contacts');
 const { validateBody } = require('../../decorators')
 const { validateBodyReq } = require('../../helpers')
 const {validatePatchReqBody} = require('../../helpers')
-const { isValidId, authenticate } = require("../../middlewares");
+const { isValidId, authenticate, upload } = require("../../middlewares");
 
 router.use(authenticate);
 
@@ -17,7 +17,7 @@ router.get("/", contactsController.getAllContacts);
 
 router.get("/:contactId", isValidId, contactsController.getContactById);
 
-router.post("/", validateBody(schemas.contactAddSchema), contactsController.addContact);
+router.post("/", upload.single("avatar"), validateBody(schemas.contactAddSchema), contactsController.addContact);
 
 router.delete("/:contactId", isValidId, contactsController.deleteContactById);
 
