@@ -88,6 +88,10 @@ const signin = async (req, res) => {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
 
+  if (!user.verify) {
+    throw HttpError(404, "User not found");
+  }
+  
     if (!user) {
         throw HttpError(401, "Email or password is wrong");
     }
